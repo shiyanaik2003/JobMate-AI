@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobMate AI — Student Part-Time Jobs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <button class="brand" onclick="showPage('home')">
+    <span class="brand-mark">J</span>
+    <span>JobMate <b>AI</b></span>
+  </button>
+
+  <nav class="nav-links">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('recommendations')">Find Jobs</button>
+    <button onclick="showPage('applications')">How It Works</button>
+  </nav>
+
+  <div class="nav-actions">
+
+    <!-- These buttons are changed by JavaScript after login -->
+    <button
+      id="navLogin"
+      class="login-link"
+      onclick="handleNavLogin()">
+      Log in
+    </button>
+
+    <button
+      id="navCta"
+      class="top-cta"
+      onclick="handleNavCta()">
+      Get Started
+    </button>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page active">
+
+  <div class="landing">
+
+    <div class="landing-copy">
+
+      <span class="eyebrow">
+        AI-POWERED JOB MATCHING
+      </span>
+
+      <h1>
+        Find Part-Time Jobs<br>
+        That Fit <span>Your Life</span>
+      </h1>
+
+      <p>
+        AI-powered job recommendations based on your skills,
+        availability and preferences.
+      </p>
+
+      <button
+        class="primary-btn"
+        onclick="showPage('signup')">
+        Find My Job <span>→</span>
+      </button>
+
+    </div>
+
+
+    <div class="landing-visual">
+
+      <div class="illustration-card">
+
+        <div class="bubble bubble-one">✦</div>
+        <div class="bubble bubble-two">✓</div>
+
+        <div class="people-art">
+
+          <div class="person p1">👩🏻‍💻</div>
+          <div class="person p2">🧑🏻‍🎨</div>
+          <div class="person p3">👨🏻‍💻</div>
+          <div class="laptop">💻</div>
+
+        </div>
+
+        <div class="mini-job-preview">
+
+          <strong>Job recommendation</strong>
+          <span>UI/UX Design Intern</span>
+          <small>Goa • 4–7 PM</small>
+          <b>94% match</b>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SIGN UP ================= -->
+
+<section id="signup" class="page form-page">
+
+  <div class="auth-card">
+
+    <h2>Create your account</h2>
+
+    <p>
+      Find opportunities that fit your student life.
+    </p>
+
+    <label>Full Name</label>
+
+    <input
+      id="signupName"
+      type="text"
+      placeholder="Enter your full name">
+
+
+    <label>Email</label>
+
+    <input
+      id="signupEmail"
+      type="email"
+      placeholder="Enter your email">
+
+
+    <label>Password</label>
+
+    <input
+      id="signupPassword"
+      type="password"
+      placeholder="Create a password">
+
+
+    <button
+      class="primary-btn full"
+      onclick="createAccount()">
+      Create Account
+    </button>
+
+
+    <p class="switch-text">
+      Already have an account?
+
+      <button onclick="loginExistingUser()">
+        Log in
+      </button>
+
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PROFILE ================= -->
+
+<section id="profile" class="page form-page profile-bg">
+
+  <div class="profile-card">
+
+    <h2>Let's personalize your job search</h2>
+
+    <p>
+      Tell us about yourself so JobMate AI can find relevant opportunities.
+    </p>
+
+
+    <label>Education</label>
+
+    <select id="education">
+
+      <option value="Computer Engineering">
+        Computer Engineering
+      </option>
+
+      <option value="Computer Science">
+        Computer Science
+      </option>
+
+      <option value="Information Technology">
+        Information Technology
+      </option>
+
+      <option value="Other">
+        Other
+      </option>
+
+    </select>
+
+
+    <label>Skills</label>
+
+    <div class="pill-grid" id="skillPills">
+
+      <button type="button" class="pill" data-value="Figma">
+        Figma
+      </button>
+
+      <button type="button" class="pill" data-value="HTML">
+        HTML
+      </button>
+
+      <button type="button" class="pill" data-value="CSS">
+        CSS
+      </button>
+
+      <button type="button" class="pill" data-value="Python">
+        Python
+      </button>
+
+      <button type="button" class="pill" data-value="JavaScript">
+        JavaScript
+      </button>
+
+      <button type="button" class="pill" data-value="Canva">
+        Canva
+      </button>
+
+      <button type="button" class="pill" data-value="Content Writing">
+        Content Writing
+      </button>
+
+      <button type="button" class="pill" data-value="UI/UX">
+        UI/UX
+      </button>
+
+    </div>
+
+
+    <div class="two-col">
+
+      <div>
+
+        <label>Location</label>
+
+        <select id="location">
+
+          <option value="Goa">Goa</option>
+          <option value="Panaji">Panaji</option>
+          <option value="Margao">Margao</option>
+          <option value="Remote">Remote</option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>Job Preference</label>
+
+        <select id="preference">
+
+          <option value="Design">Design</option>
+          <option value="Development">Development</option>
+          <option value="Content">Content</option>
+          <option value="Marketing">Marketing</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <label>Availability</label>
+
+    <div class="pill-grid small">
+
+      <button
+        type="button"
+        class="pill availability"
+        data-value="Morning">
+        Morning
+      </button>
+
+      <button
+        type="button"
+        class="pill availability"
+        data-value="Afternoon">
+        Afternoon
+      </button>
+
+      <button
+        type="button"
+        class="pill availability active"
+        data-value="Evening">
+        Evening
+      </button>
+
+      <button
+        type="button"
+        class="pill availability"
+        data-value="Weekend">
+        Weekend
+      </button>
+
+    </div>
+
+
+    <label>Salary expectation</label>
+
+    <select id="salary">
+
+      <option value="5000">
+        ₹5,000 – ₹10,000
+      </option>
+
+      <option value="10000">
+        ₹10,000 – ₹15,000
+      </option>
+
+      <option value="15000">
+        ₹15,000+
+      </option>
+
+    </select>
+
+
+    <button
+      class="primary-btn full"
+      onclick="generateRecommendations()">
+      Generate My Recommendations →
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= RECOMMENDATIONS ================= -->
+
+<section id="recommendations" class="page recommendations-page">
+
+  <div class="recommendations-wrap">
+
+    <div class="greeting">
+
+      <div>
+
+        <small>JobMate AI</small>
+
+        <h2>
+          Good morning,
+          <span id="greetingName">Siya</span> 👋
+        </h2>
+
+        <p>
+          Here are opportunities matched to your profile.
+        </p>
+
+      </div>
+
+
+      <button
+        class="avatar-btn"
+        onclick="showPage('profile')">
+        S
+      </button>
+
+    </div>
+
+
+    <div class="search-bar">
+
+      <span>⌕</span>
+
+      <input
+        id="jobSearch"
+        type="text"
+        placeholder="Search jobs, skills or companies"
+        oninput="filterJobs()">
+
+    </div>
+
+
+    <div class="filter-row">
+
+      <button class="filter active">All</button>
+      <button class="filter">Remote</button>
+      <button class="filter">Nearby</button>
+      <button class="filter">Part-time</button>
+      <button class="filter">₹5K+</button>
+
+    </div>
+
+
+    <div class="recommendation-banner">
+
+      <div>
+
+        <strong>
+          ✨ AI-Powered Recommendations
+        </strong>
+
+        <span>
+          We found jobs that match your skills,
+          availability and preferences.
+        </span>
+
+      </div>
+
+      <span
+        class="match-count"
+        id="matchCount">
+        0 matches
+      </span>
+
+    </div>
+
+
+    <div
+      id="jobList"
+      class="compact-job-grid">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= JOB DETAILS ================= -->
+
+<section id="details" class="page detail-page">
+
+  <div class="detail-wrap">
+
+    <button
+      class="back-link"
+      onclick="showPage('recommendations')">
+      ← Back to jobs
+    </button>
+
+    <div id="jobDetails"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= APPLY ================= -->
+
+<section id="apply" class="page form-page">
+
+  <div class="apply-card">
+
+    <div class="apply-title">
+
+      <div>
+
+        <small>Apply</small>
+
+        <h2 id="applyJobTitle">
+          Apply for Job
+        </h2>
+
+        <p id="applyCompany">
+          Company
+        </p>
+
+      </div>
+
+      <button
+        class="change-btn"
+        onclick="showPage('details')">
+        Change
+      </button>
+
+    </div>
+
+
+    <label>Resume</label>
+
+    <div class="file-box">
+
+      📄
+
+      <span id="resumeName">
+        Resume.pdf
+      </span>
+
+      <button
+        onclick="document.getElementById('resume').click()">
+        Change
+      </button>
+
+    </div>
+
+
+    <input
+      id="resume"
+      type="file"
+      accept=".pdf,.doc,.docx"
+      hidden
+      onchange="updateResume()">
+
+
+    <label>Short introduction</label>
+
+    <textarea
+      id="intro"
+      placeholder="Tell the employer briefly about yourself...">
+    </textarea>
+
+
+    <label>Availability</label>
+
+    <select id="applyAvailability">
+
+      <option>Weekly evenings</option>
+      <option>Weekends</option>
+      <option>Flexible</option>
+
+    </select>
+
+
+    <button
+      class="primary-btn full"
+      onclick="submitApplication()">
+      Submit Application
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SUBMITTED ================= -->
+
+<section id="submitted" class="page form-page">
+
+  <div class="success-card">
+
+    <div class="success-icon">
+      ✓
+    </div>
+
+    <h2>
+      🎉 Application Submitted!
+    </h2>
+
+    <p id="submittedText">
+      Your application has been successfully submitted.
+    </p>
+
+    <div class="status-chip">
+      Under Review
+    </div>
+
+    <button
+      class="primary-btn full"
+      onclick="showPage('applications')">
+      Track Application
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= APPLICATIONS ================= -->
+
+<section id="applications" class="page applications-page">
+
+  <div class="applications-wrap">
+
+    <div class="page-title">
+
+      <div>
+
+        <small>JobMate AI</small>
+
+        <h2>My Applications</h2>
+
+        <p>
+          Track your applications and their current status.
+        </p>
+
+      </div>
+
+      <button
+        class="primary-btn"
+        onclick="showPage('recommendations')">
+        Find More Jobs
+      </button>
+
+    </div>
+
+
+    <div
+      id="applicationList"
+      class="application-stack">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= AI ASSISTANT ================= -->
+
+<section id="assistant" class="page form-page">
+
+  <div class="assistant-card">
+
+    <div class="assistant-head">
+
+      <span class="assistant-icon">
+        ✦
+      </span>
+
+      <div>
+
+        <strong>Ask Mate</strong>
+
+        <small>
+          AI Career Assistant • Online
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="chat-area"
+      id="chatArea">
+
+      <div class="ai-message">
+        Hi! I'm Mate. Ask me which job matches
+        your skills, salary, availability or how to apply.
+      </div>
+
+    </div>
+
+
+    <div class="chat-input">
+
+      <input
+        id="chatInput"
+        placeholder="Ask Mate anything..."
+        onkeypress="handleChatKey(event)">
+
+      <button onclick="askAssistant()">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```
